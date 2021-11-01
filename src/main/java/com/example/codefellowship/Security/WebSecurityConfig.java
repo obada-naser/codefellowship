@@ -35,6 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().disable().csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/*").permitAll()
+
                 .antMatchers("/login*").permitAll()
                 .antMatchers("/signup*").permitAll()
                 .antMatchers("/style.css").permitAll()
@@ -43,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/profile")
                 .failureUrl("/login")
                 .and()
                 .logout()

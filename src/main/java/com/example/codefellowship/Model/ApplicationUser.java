@@ -16,17 +16,16 @@ public class ApplicationUser implements UserDetails {
     @Column(unique = true)
     private String userName;
     private String password;
-
     private String firstName;
     private String lastName;
-    private int dateOfBirth;
+    private String dateOfBirth;
     private String bio;
 
     public ApplicationUser(){
 
     }
 
-    public ApplicationUser(String userName, String password, String firstName, String lastName, int dateOfBirth, String bio) {
+    public ApplicationUser(String userName, String password, String firstName, String lastName, String dateOfBirth, String bio) {
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
@@ -69,5 +68,49 @@ public class ApplicationUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 }
