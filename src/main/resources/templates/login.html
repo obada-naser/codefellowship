@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -8,18 +8,22 @@
     <title>Document</title>
 </head>
 <body>
+<!--<div th:insert="parts :: header"></div>-->
+
 
 <form action="/perform_login" method="post">
-    <label for="userName">Username</label>
-    <input type="text" name="userName" id="userName">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username">
     <label for="password">Password</label>
-    <input type="text" name="password" id="password">
+    <input type="password" name="password" id="password">
     <input type="submit" value="sign In">
 
 
 </form>
 
 <a href="signup">Sign up here</a>
+
+
 
 </body>
 </html>
