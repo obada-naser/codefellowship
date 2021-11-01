@@ -11,15 +11,18 @@
 
 <h2>Welcome to profile page</h2>
 
-<tr th:each="ApplicationUser :${userName}">
+<tr>
 
-    <td th:text="ApplicationUser.firstName"></td>
+    <td th:text="${userName.firstName}"></td>
     <br>
-    <td th:text="ApplicationUser.lastName"></td>
+    <td th:text="${userName.lastName}"></td>
     <br>
-    <td th:text="ApplicationUser.dateOfBirth"></td>
+    <td th:text="${userName.dateOfBirth}"></td>
     <br>
-    <td th:text="ApplicationUser.bio"></td>
+    <td th:text="${userName.bio}"></td>
+    <br>
+    <td th:text="${userName.imageUrl}"></td>
+
 </tr>
 
 

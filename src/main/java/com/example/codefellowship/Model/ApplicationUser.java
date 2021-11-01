@@ -11,27 +11,31 @@ import java.util.Collection;
 public class ApplicationUser implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY  )
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     private int Id;
     @Column(unique = true)
-    private String userName;
+    private String username;
     private String password;
     private String firstName;
     private String lastName;
     private String dateOfBirth;
     private String bio;
+    private String imageUrl;
+
 
     public ApplicationUser(){
 
     }
 
-    public ApplicationUser(String userName, String password, String firstName, String lastName, String dateOfBirth, String bio) {
-        this.userName = userName;
+    public ApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio,String imageUrl) {
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.bio = bio;
+        this.imageUrl=imageUrl;
+
     }
 
 
@@ -47,7 +51,7 @@ public class ApplicationUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     @Override
@@ -71,11 +75,11 @@ public class ApplicationUser implements UserDetails {
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
@@ -113,4 +117,12 @@ public class ApplicationUser implements UserDetails {
     public void setBio(String bio) {
         this.bio = bio;
     }
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
 }
