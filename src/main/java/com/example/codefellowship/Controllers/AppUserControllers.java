@@ -42,9 +42,10 @@ public class AppUserControllers {
     }
 
     @GetMapping("/users/{id}")
-    public String findingUser(@PathVariable int id,Model model){
-        model.addAttribute("userName",appUserRepository.findAll());
-        return"profile";
+    public String findingUser(@PathVariable int id,Model model,Principal principal){
+
+        model.addAttribute("userName",appUserRepository.findById(id));
+        return"Users";
     }
 
     @PostMapping("/signup")

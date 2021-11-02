@@ -5,8 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="style.css" rel="stylesheet" />
-    <title>Home Page</title>
+    <title>Users</title>
 </head>
 <body>
 <header>
@@ -16,19 +15,26 @@
 </header>
 
 <main>
-<h1>Welcome to my website</h1>
+    <tr>
 
+        <td th:text="${userName.firstName}"></td>
+        <br>
+        <td th:text="${userName.lastName}"></td>
+        <br>
+        <td th:text="${userName.dateOfBirth}"></td>
+        <br>
+        <td th:text="${userName.bio}"></td>
+        <br>
+        <td th:text="${userName.imageUrl}"></td>
 
-<a href="login">login here</a>
-    <br>
-<a href="signup">Sign up here</a>
+    </tr>
+</main>
+
 
 </main>
 
 <footer>
     <div th:insert="components :: footer"></div>
 </footer>
-
-
 </body>
 </html>

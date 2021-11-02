@@ -5,25 +5,28 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="style.css" rel="stylesheet" />
     <title>Header&Footer    </title>
 </head>
 <body>
 
 
 <header th:fragment="header">
-    <h1>Code Fellow Ship</h1>
+    <h1>CodeFellowShip</h1>
 </header>
 
-<div th:fragment="menu">
-    <a href="index" class="active">Home</a>
-    <a href="#blog">Blog</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a>
+<div class="fragments" th:fragment="menu">
+    <a href="/" class="active">Home</a>
+    <a href="profile">profile</a>
+    <a href="allUsers">Users</a>
+
+    <h3 sec:authentication="name"></h3>
+
 </div>
 
 
 <footer th:fragment="footer">
-    <p>2019 FrontBackend.com</p>
+    <p>2021 &copy; codefellowship</p>
 </footer>
 
 

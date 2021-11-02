@@ -1,5 +1,32 @@
 
 
 body{
-background-color:cyan;
+background-color:grey;
+margin:0%;
 }
+header{
+
+  color:hsl(200, 84%, 38%);
+  background-color: #b8cddb;
+ height: 75px;
+  margin-top: -18px;
+}
+.menu{
+  float: right;
+  width: 30%;
+  margin-top: -43px;
+ margin-right: -98px;
+
+
+}
+
+.fragments a{
+
+  display: inline-block;
+  margin-right: 11px;
+}
+.fragments h3{
+ display: inline-block;
+  margin-right: 11px;
+}
+

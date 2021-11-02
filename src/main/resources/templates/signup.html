@@ -8,6 +8,12 @@
     <title>Document</title>
 </head>
 <body>
+<header>
+    <div class="headerLogin" th:insert="components :: header"></div>
+    <div class="menu" th:insert="components :: menu"></div>
+
+</header>
+<main>
 <h2>Please fill this form to create an account</h2>
 
 <form action="/signup" method="post">
@@ -34,6 +40,13 @@
 
     <input type="submit">
 </form>
+</main>
+
+
+<footer>
+
+    <div th:insert="components :: footer"></div>
+</footer>
 
 </body>
 </html>
