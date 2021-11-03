@@ -16,9 +16,10 @@
 
 
 </header>
+
 <main>
 <h2>Welcome to profile page</h2>
-
+<div>
 <tr>
 
     <td th:text="${userName.firstName}"></td>
@@ -29,9 +30,53 @@
     <br>
     <td th:text="${userName.bio}"></td>
     <br>
-    <td th:text="${userName.imageUrl}"></td>
+
 
 </tr>
+</div>
+
+    <br>
+    <br>
+
+    <div>
+
+        <form action="/post" method="post" style="width: 25rem;margin: 20px;">
+            <div class="form-group">
+                <label for="body">Body</label>
+                <input class="form-control" type="text" id="body" name="body">
+
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+<!--<div>-->
+
+<!--    <form action="/post" method="post" style="width: 25rem;margin: 20px;">-->
+<!--        <div class="form-group">-->
+<!--            <label for="body">Body</label>-->
+<!--            <input class="form-control" type="text" id="body" name="body">-->
+
+<!--        </div>-->
+
+<!--        <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--    </form>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <h3 style="margin-left:10px;"> Your Posts : </h3>-->
+<!--        <div class="list-group">-->
+<!--            <ul th:each="post : ${posts}" style="width: 70%;">-->
+<!--                <li >Post :<span th:text="${post.body}"></span></li>-->
+<!--                <li >Time :<span th:text="${post.createdAt}"></span></li>-->
+
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+
+
 </main>
 
 <footer>

@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,36 +12,127 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Users</title>
+    <title>All users</title>
+    <link href="style.css" rel="stylesheet" />
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
+<!--          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
 </head>
 <body>
 <header>
     <div class="headerLogin" th:insert="components :: header"></div>
     <div class="menu" th:insert="components :: menu"></div>
-
 </header>
 
 <main>
-    <tr>
+<h1>
+    Users:
+</h1>
 
-        <td th:text="${userName.firstName}"></td>
-        <br>
-        <td th:text="${userName.lastName}"></td>
-        <br>
-        <td th:text="${userName.dateOfBirth}"></td>
-        <br>
-        <td th:text="${userName.bio}"></td>
-        <br>
-        <td th:text="${userName.imageUrl}"></td>
+<div class="row">
 
-    </tr>
-</main>
+    <div th:each="user:${users}" class="card" style="width: 18rem;margin: 10px;">
+        <img class="card-img-top" th:src="@{/img/abstract-user-flat-4.svg}" alt="Card image cap">
+        <div class="card-body">
+            <h5 th:text="${user.username}" class="card-title"></h5>
+            <p th:text="${user.bio}" class="card-text"></p>
 
+
+            <a th:href="${'/users/'+user.getId}" >show user</a>
+
+
+
+
+        </div>
+        <div  th:if="${user.getId} != ${appUser.getId}">
+            <div th:if="!${appUser.followers.contains(user)}">
+                <form method="post" action="/users/follow">
+                    <button type="submit" >Follow Me!
+                    </button>
+                    <input type="hidden" name="followedUser" th:value="${user.getId}">
+                </form>
+            </div>
+            <div th:if="${appUser.followers.contains(user)}">
+                <p>
+
+                        Following!
+                </p>
+
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+
+</div>
 
 </main>
 
 <footer>
+
     <div th:insert="components :: footer"></div>
 </footer>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport"-->
+<!--          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+<!--    <title>Users</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<header>-->
+<!--    <div class="headerLogin" th:insert="components :: header"></div>-->
+<!--    <div class="menu" th:insert="components :: menu"></div>-->
+
+<!--</header>-->
+
+<!--<main>-->
+<!--    <tr each>-->
+
+<!--        <td th:text="${userName.firstName}"></td>-->
+<!--        <br>-->
+<!--        <td th:text="${userName.lastName}"></td>-->
+<!--        <br>-->
+<!--        <td th:text="${userName.dateOfBirth}"></td>-->
+<!--        <br>-->
+<!--        <td th:text="${userName.bio}"></td>-->
+<!--        <br>-->
+<!--        <td th:text="${userName.imageUrl}"></td>-->
+
+<!--    </tr>-->
+<!--</main>-->
+
+
+<!--</main>-->
+
+<!--<footer>-->
+<!--    <div th:insert="components :: footer"></div>-->
+<!--</footer>-->
+<!--</body>-->
+<!--</html>-->

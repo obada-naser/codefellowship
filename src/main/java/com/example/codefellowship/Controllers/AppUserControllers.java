@@ -6,6 +6,7 @@ import com.example.codefellowship.Repositories.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Controller
 public class AppUserControllers {
@@ -41,19 +44,19 @@ public class AppUserControllers {
         return"profile";
     }
 
-    @GetMapping("/users/{id}")
-    public String findingUser(@PathVariable int id,Model model,Principal principal){
-
-        model.addAttribute("userName",appUserRepository.findById(id));
-        return"Users";
-    }
+//    @GetMapping("/users/{id}")
+//    public String findingUser(@PathVariable int id,Model model,Principal principal){
+//
+//        model.addAttribute("userName",appUserRepository.findById(id).get());
+//        return"Users";
+//    }
 
     @PostMapping("/signup")
     public RedirectView signUpPage(@RequestParam String username,
                                    @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName,
-                                   @RequestParam String dateOfBirth, @RequestParam String bio,@RequestParam String imageUrl     ){
+                                   @RequestParam String dateOfBirth, @RequestParam String bio ){
 
-        ApplicationUser applicationUser=new ApplicationUser(username,encoder.encode(password),firstName,lastName,dateOfBirth,bio,imageUrl);
+        ApplicationUser applicationUser=new ApplicationUser(username,encoder.encode(password),firstName,lastName,dateOfBirth,bio);
         Authentication authentication = new UsernamePasswordAuthenticationToken(applicationUser, null, new ArrayList<>());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         appUserRepository.save(applicationUser);
@@ -72,6 +75,49 @@ public class AppUserControllers {
         return"components.html";
 
     }
+
+    @GetMapping("/users")
+    public String getAllUsers(Principal principal, Model model) {
+        ApplicationUser appUser = appUserRepository.findByUsername(principal.getName());
+        List<ApplicationUser> allUsers = (List<ApplicationUser>) appUserRepository.findAll();
+        model.addAttribute("appUser", appUser);
+        model.addAttribute("users", allUsers);
+
+        return "Users";
+    }
+
+
+    @GetMapping("/users/{id}")
+    public String getUserProfile(@PathVariable int id,Principal principal,Model model){
+        ApplicationUser targetUser=appUserRepository.findById(id).get();
+        model.addAttribute("targetUser",targetUser);
+        ApplicationUser currentUser=appUserRepository.findByUsername(principal.getName());
+        model.addAttribute("currentUser",currentUser);
+
+        return "userprofile";
+    }
+
+
+    @PostMapping("/users/follow")
+    public RedirectView followUser(int followedUser,Principal principal){
+        ApplicationUser user=appUserRepository.findByUsername(principal.getName());
+        ApplicationUser follow=appUserRepository.findById(followedUser).get();
+        user.addFollower(follow);
+        appUserRepository.save(user);
+        return new RedirectView("/users");
+    }
+
+    @GetMapping("/feed")
+    public String getFeeds(Principal principal,Model model){
+        ApplicationUser feed=appUserRepository.findByUsername(principal.getName());
+
+        model.addAttribute("followers",feed);
+        return "feed";
+    }
+
+
+
+
 
 
 

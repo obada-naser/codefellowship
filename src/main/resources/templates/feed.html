@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Feed</title>
+</head>
+<body>
+
+
+
+
+<p>Hello from Feed Page you can see the posts for your following users </p>
+
+<section>
+    <div
+            class="main-div"
+            th:each="follower:${followers}"
+    >
+        <div >
+            <img
+                    class="image"
+                    th:src="${follower.imageUrl}"
+                    alt="defaultImg"/>
+
+        </div>
+        <div >
+            <h5 class="card-title" th:text=" ${follower.firstName}"></h5>
+            <h6 th:each="post:${follower.writtenPost}"
+                th:text="${post.body}"></h6>
+            <br/><br/>
+           
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>
