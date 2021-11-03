@@ -111,7 +111,7 @@ public class AppUserControllers {
     public String getFeeds(Principal principal,Model model){
         ApplicationUser feed=appUserRepository.findByUsername(principal.getName());
 
-        model.addAttribute("followers",feed);
+        model.addAttribute("feed",feed);
         return "feed";
     }
 
