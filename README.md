@@ -5,10 +5,11 @@
 2. then created an html template to make it appear.
 3. also I created a security and repositiory to post the data into the database.
 
+
 ## Running the App
 
 Using these routes with url localhost:8080:
-/ , /signUp, /login
+/ , /signUp, /login,/users,users/follow,/post,/profile.
 
 ## Table of content
 assignment     |  link
