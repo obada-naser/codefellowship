@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -26,19 +27,40 @@ public class ApplicationUser implements UserDetails {
     @OneToMany(mappedBy = "applicationUser")
     private List<UserPost> post;
 
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name="follower",joinColumns = @JoinColumn(name="from_id"),inverseJoinColumns = @JoinColumn(name="to_id"))
+    Set<ApplicationUser> followers;
+    @ManyToMany(mappedBy = "followers")
+    Set<ApplicationUser> following;
+
+    public Set<ApplicationUser> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(Set<ApplicationUser> followers) {
+        this.followers = followers;
+    }
+
+    public Set<ApplicationUser> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(Set<ApplicationUser> following) {
+        this.following = following;
+    }
 
     public ApplicationUser(){
 
     }
 
-    public ApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio,String imageUrl) {
+    public ApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.bio = bio;
-        this.imageUrl=imageUrl;
+
 
     }
 
@@ -133,7 +155,29 @@ public class ApplicationUser implements UserDetails {
         return post;
     }
 
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
     public void setPost(List<UserPost> post) {
         this.post = post;
     }
+
+
+
+    public void addFollower(ApplicationUser follower) {
+        followers.add(follower);
+    }
+
+    public void removeFollower(ApplicationUser follower) {
+        followers.remove(follower);
+    }
+
+
+
+
 }

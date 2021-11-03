@@ -12,24 +12,31 @@ import java.time.LocalDateTime;
 public class UserPost {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",nullable = false)
     private int id;
-
-    @ManyToOne
-    @JoinColumn(name="post_id")
-    private ApplicationUser applicationUser;
-
+    private LocalDateTime createdAt=LocalDateTime.now();
     private String body;
 
+    @ManyToOne
+    private ApplicationUser applicationUser;
 
-    @CreationTimestamp
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @JsonFormat(pattern =  "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createdAt;
+
+
+
+//    @CreationTimestamp
+//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+//    @JsonFormat(pattern =  "yyyy-MM-dd HH:mm:ss")
+//    private LocalDateTime createdAt;
+
+
 
 
     public UserPost(){
 
+    }
+
+    public UserPost(ApplicationUser applicationUser, String body) {
+        this.applicationUser=applicationUser;
+        this.body=body;
     }
 
     public int getId() {
