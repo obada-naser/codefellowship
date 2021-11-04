@@ -19,9 +19,9 @@
 <h1>Welcome to my website</h1>
 
 
-<a href="login">login here</a>
+<a href="login" sec:authorize="isAnonymous">login here</a>
     <br>
-<a href="signup">Sign up here</a>
+<a href="signup" sec:authorize="isAnonymous">Sign up here</a>
 
 </main>
 
