@@ -9,7 +9,7 @@
 ## Running the App
 
 Using these routes with url localhost:8080:
-/ , /signUp, /login,/users,users/follow,/post,/profile.
+/ , /signUp, /login,/users,users/follow,/post,/profile,/feed.
 
 ## Table of content
 assignment     |  link
