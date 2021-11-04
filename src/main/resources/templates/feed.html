@@ -5,24 +5,42 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="style.css" rel="stylesheet" />
     <title>Feed</title>
 </head>
 <body>
+<header>
+    <div class="headerLogin" th:insert="components :: header"></div>
+    <div class="menu" th:insert="components :: menu"></div>
+
+</header>
 
 
-
-
+<main>
 <p>Hello from Feed Page you can see the posts for your following users </p>
 
 <section>
-    <h1 th:each="follower:${feed}"> <span th:text="${follower.firstName}"></span></h1>
-   <div th:each="eachFollower:${follower.followers}" >
+    <h1 th:each="applicationUser:${applicationUser}"> <span th:text="${applicationUser.firstName}"></span></h1>
+   <div th:each="eachFollower:${applicationUser.followers}" >
+       <ul th:each="post : ${eachFollower.getPost}" >
+           <li><br><b>Created At:</b> <span th:text="${post.createdAt}">Time Stamp</span></li>
+           <li th:if="${applicationUser} != ${eachFollower}"><b>Author:</b> <span th:text="${eachFollower.username}"></span>
+           </li>
+           <li th:text="${post.body}">Body</li>
+           <li th:if="${applicationUser} != ${eachFollower}"><a th:href="'/users/' + ${eachFollower.id}">View my profile</a>
+           </li>
+       </ul>
 
 
    </div>
 
 </section>
 
+</main>
+
+<footer>
+    <div th:insert="components :: footer"></div>
+</footer>
 
 </body>
 </html>

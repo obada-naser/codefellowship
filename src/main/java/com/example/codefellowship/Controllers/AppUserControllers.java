@@ -109,9 +109,9 @@ public class AppUserControllers {
 
     @GetMapping("/feed")
     public String getFeeds(Principal principal,Model model){
-        ApplicationUser feed=appUserRepository.findByUsername(principal.getName());
+        ApplicationUser applicationUser=appUserRepository.findByUsername(principal.getName());
 
-        model.addAttribute("feed",feed);
+        model.addAttribute("applicationUser",applicationUser);
         return "feed";
     }
 
